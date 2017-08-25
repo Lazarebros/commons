@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ScannerUtil {
 
-	private static final Logger logger = LoggerFactory.getLogger(ScannerUtil.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ScannerUtil.class);
 
 	public static String scanFileToText(String fileName) {
 		File file = new File(fileName);
@@ -31,7 +31,7 @@ public class ScannerUtil {
 		try (InputStream stream = new FileInputStream(file)) {
 			content = scanFileToText(stream);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			LOGGER.error(e.getMessage());
 		}
 		return content;
 	}
