@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.d2l2c.user.mangement.bean;
+package com.d2l2c.user.management.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.d2l2c.user.mangement.dao.impl;
+package com.d2l2c.user.management.dao.impl;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import com.d2l2c.user.mangement.bean.User;
-import com.d2l2c.user.mangement.dao.UserDao;
+import com.d2l2c.user.management.bean.User;
+import com.d2l2c.user.management.dao.UserDao;
 
 /**
  * @author dayanlazare

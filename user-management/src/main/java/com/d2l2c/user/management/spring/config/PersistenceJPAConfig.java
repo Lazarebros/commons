@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.d2l2c.user.mangement.spring.config;
+package com.d2l2c.user.management.spring.config;
 
 import java.util.Properties;
 
@@ -31,8 +31,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("com.d2l2c.user.mangement.dao"),
-		@ComponentScan("com.d2l2c.user.mangement.service") })
+@ComponentScans(value = { @ComponentScan("com.d2l2c.user.management.dao"),
+		@ComponentScan("com.d2l2c.user.management.service") })
 public class PersistenceJPAConfig {
 
 	@Autowired
@@ -42,7 +42,7 @@ public class PersistenceJPAConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "com.d2l2c.user.mangement.bean" });
+		em.setPackagesToScan(new String[] { "com.d2l2c.user.management.bean" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);

@@ -1,12 +1,12 @@
-package com.d2l2c.user.mangement.util;
+package com.d2l2c.user.management.util;
 
 import java.util.List;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.d2l2c.user.mangement.bean.User;
-import com.d2l2c.user.mangement.service.UserService;
-import com.d2l2c.user.mangement.spring.config.PersistenceJPAConfig;
+import com.d2l2c.user.management.bean.User;
+import com.d2l2c.user.management.service.UserService;
+import com.d2l2c.user.management.spring.config.PersistenceJPAConfig;
 
 public class SpringHibernateMain {
 

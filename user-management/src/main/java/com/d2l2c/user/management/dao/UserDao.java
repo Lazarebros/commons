@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.d2l2c.user.mangement.dao;
+package com.d2l2c.user.management.dao;
 
 import java.util.List;
 
-import com.d2l2c.user.mangement.bean.User;
+import com.d2l2c.user.management.bean.User;
 
 /**
  * @author dayanlazare
