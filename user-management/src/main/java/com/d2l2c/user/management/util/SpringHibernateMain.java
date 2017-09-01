@@ -5,12 +5,12 @@ public class SpringHibernateMain {
 //	public static void main(String[] args) {
 //		AnnotationConfigApplicationContext context = null;
 //		try {
-//			context = new AnnotationConfigApplicationContext(PersistenceJPAConfig.class);
+//			context = new AnnotationConfigApplicationContext(UserJPAConfig.class);
 //
 //			UserService userService = context.getBean(UserService.class);
 //
 //			// Get Users
-//			List<User> users = userService.listUsers();
+//			List<User> users = userService.findAll();
 //			for (User user : users) {
 //				System.out.println("Id = " + user.getId());
 //				System.out.println("First Name = " + user.getUsername());

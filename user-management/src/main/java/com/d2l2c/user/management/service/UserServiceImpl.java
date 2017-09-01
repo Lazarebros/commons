@@ -1,7 +1,5 @@
 package com.d2l2c.user.management.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,22 +13,22 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 
-	@Transactional
+	@Transactional("userTransactionManager")
 	@Override
 	public User validateUser(String username, String password) throws Exception {
 		return userDao.getUser(username, password);
 	}
 
-	@Transactional
+	@Transactional("userTransactionManager")
 	@Override
 	public void add(User user) throws Exception {
 		userDao.add(user);
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional("userTransactionManager")
 	@Override
-	public List<User> listUsers() throws Exception {
-		return userDao.listUsers();
+	public Iterable<User> findAll() throws Exception {
+		return userDao.findAll();
 	}
 
 }
