@@ -13,7 +13,7 @@ import com.d2l2c.user.management.bean.User;
  */
 public interface UserDao extends JpaRepository<User, Integer> {
 
-	public User getUser(String username, String password) throws Exception;
+	public User getUser(String username) throws Exception;
 
 	public void add(User user) throws Exception;
 

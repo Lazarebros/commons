@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.d2l2c.common.util.date.DateUtil;
 import com.d2l2c.common.util.scanner.ScannerUtil;
-import com.d2l2c.paycheck.scanner.util.bean.Paycheck;
+import com.d2l2c.paycheck.scanner.util.bean.PaycheckScan;
 
 /**
  * @author dayanlazare
@@ -27,7 +27,7 @@ public class PaycheckExtractorTest {
 
 	@Test
 	public void testMS3Parse() {
-		Paycheck paycheck = this.getPaycheck(MS3_FILE_NAME);
+		PaycheckScan paycheck = this.getPaycheck(MS3_FILE_NAME);
 
 		assertThat(paycheck.getCompanyName(), is(MS3PaycheckExtractor.COMPANY_NAME));
 		assertThat(paycheck.getStartDate(), is(DateUtil.stringToDate("07/16/2017", DateUtil.DATE_PATTERN_US_YYYY)));
@@ -41,7 +41,7 @@ public class PaycheckExtractorTest {
 
 	@Test
 	public void testMMIParse() {
-		Paycheck paycheck = this.getPaycheck(MMI_FILE_NAME);
+		PaycheckScan paycheck = this.getPaycheck(MMI_FILE_NAME);
 		
 		assertThat(paycheck.getCompanyName(), is(MMIPaycheckExtractor.COMPANY_NAME));
 		assertThat(paycheck.getStartDate(), is(DateUtil.stringToDate("05/11/2015", DateUtil.DATE_PATTERN_US_YYYY)));
@@ -53,7 +53,7 @@ public class PaycheckExtractorTest {
 		assertThat(paycheck.getReimbursement(), is(new BigDecimal(0)));
 	}
 	
-	private Paycheck getPaycheck(String fileName) {
+	private PaycheckScan getPaycheck(String fileName) {
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource(fileName).getFile());
 

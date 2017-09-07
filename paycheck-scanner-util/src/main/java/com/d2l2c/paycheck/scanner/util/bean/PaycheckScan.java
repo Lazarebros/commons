@@ -7,7 +7,7 @@ import java.util.Date;
  * @author dayanlazare
  *
  */
-public class Paycheck {
+public class PaycheckScan {
 
 	private Long id;
 	private String companyName;
@@ -19,7 +19,7 @@ public class Paycheck {
 	private BigDecimal netPay;
 	private BigDecimal reimbursement = new BigDecimal(0);
 
-	public Paycheck(String companyName) {
+	public PaycheckScan(String companyName) {
 		super();
 		this.companyName = companyName;
 	}
@@ -98,7 +98,7 @@ public class Paycheck {
 
 	@Override
 	public String toString() {
-		return "Paycheck [id=" + id + ", companyName=" + companyName + ", startDate=" + startDate + ", endDate="
+		return "PaycheckScan [id=" + id + ", companyName=" + companyName + ", startDate=" + startDate + ", endDate="
 				+ endDate + ", numberOfHours=" + numberOfHours + ", hourlyRate=" + hourlyRate + ", grossAmount="
 				+ grossAmount + ", netPay=" + netPay + ", reimbursement=" + reimbursement + "]";
 	}

@@ -37,12 +37,11 @@ public class UserDaoImpl implements UserDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public User getUser(String username, String password) {
+	public User getUser(String username) {
 		User user = null;
 
-		Query query = em.createQuery("Select user From User user Where user.username = :username and user.password = :password");
+		Query query = em.createQuery("Select user From User user Where user.username = :username");
 		query.setParameter("username", username);
-		query.setParameter("password", password);
 		query.setMaxResults(1);
 
 		List<User> listUsers = query.getResultList();
