@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import com.d2l2c.paycheck.scanner.util.bean.PaycheckScan;
 import com.d2l2c.paycheck.scanner.util.parser.ParserUtil;
 
@@ -20,8 +22,20 @@ public abstract class AbstractPaycheckExtractor {
 	
 	protected void setDates(PaycheckScan paycheck, String line, String pattern) {
 		List<Date> dates = ParserUtil.getDates(line, pattern);
-		paycheck.setStartDate(dates.get(0));
-		paycheck.setEndDate(dates.get(1));
+		if(dates.size() > 1) {
+			paycheck.setStartDate(dates.get(0));
+			paycheck.setEndDate(dates.get(1));
+		}
+	}
+	
+	protected void setPayDate(PaycheckScan paycheck, String line, String pattern) {
+		List<Date> dates = ParserUtil.getDates(line, pattern);
+		if(!dates.isEmpty()) {
+			DateTime dateTime = new DateTime(dates.get(0));
+			paycheck.setYear(dateTime.getYear());
+			paycheck.setMonth(dateTime.getMonthOfYear());
+			paycheck.setBiWeek((dateTime.getDayOfMonth() < 16) ? 1 : 2);
+		}
 	}
 
 	protected void setNumberOfHours(PaycheckScan paycheck, String line) {
