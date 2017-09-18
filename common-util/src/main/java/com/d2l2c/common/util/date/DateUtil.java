@@ -19,7 +19,7 @@ public class DateUtil {
 	public static final String DATE_PATTERN_US_YYYY = "MM/dd/yyyy";
 
 	public static final String DATE_PATTERN_US_YY = "MM/dd/yy";
-
+	
 	public static Date stringToDate(String sDate, String pattern) {
 		Date date = null;
 		DateTime dt = stringToDateTime(sDate, pattern);
@@ -36,6 +36,10 @@ public class DateUtil {
 			dateTime = formatter.parseDateTime(sDate);
 		}
 		return dateTime;
+	}
+	
+	public static String getMonth(int monthIndex) {
+		return DateTime.now().withMonthOfYear(monthIndex).toString("MMM");
 	}
 
 }
