@@ -15,6 +15,8 @@ public interface RegexConstant {
 	
 	public static final String NET_PAY = "\\bNet?\\s+(?:\\w+\\s+){0,2}Pay\\b";
 	
+	public static final String PAY_DATE = "\\bDate\\:?\\s+(?:\\w+\\s+){0,2}\\b";
+	
 	public static final String REIMBURSEMENT = "((\\bIExp\\b)|(\\bCBEx\\b))";
 
 	public static final String DATE = "(0[1-9]|1[012])/([0-2][0-9]|3[0-1])/(20\\d{2}|19\\d{2}|0(?!0)\\d|[1-9]\\d)";

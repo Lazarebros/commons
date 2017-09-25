@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.d2l2c.common.util.date.DateUtil;
-import com.d2l2c.paycheck.scanner.util.bean.Paycheck;
+import com.d2l2c.paycheck.scanner.util.bean.PaycheckScan;
 import com.d2l2c.paycheck.scanner.util.constants.RegexConstant;
 
 /**
@@ -23,11 +23,11 @@ public class MS3PaycheckExtractor extends AbstractPaycheckExtractor {
 
 	private static final Logger logger = LoggerFactory.getLogger(MS3PaycheckExtractor.class);
 
-	public static final String COMPANY_NAME = "MS3";
+	public static final String COMPANY_CODE = "MS3";
 
 	@Override
-	public Paycheck parse(String content) {
-		Paycheck paycheck = new Paycheck(COMPANY_NAME);
+	public PaycheckScan parse(String content) {
+		PaycheckScan paycheck = new PaycheckScan(COMPANY_CODE);
 		try (BufferedReader reader = new BufferedReader(new StringReader(content));
 				LineNumberReader lineReader = new LineNumberReader(reader);) {
 
@@ -35,6 +35,8 @@ public class MS3PaycheckExtractor extends AbstractPaycheckExtractor {
 			while ((line = lineReader.readLine()) != null) {
 				if (Pattern.compile(RegexConstant.PAY_PERIOD, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
 					setDates(paycheck, line, DateUtil.DATE_PATTERN_US_YYYY);
+				} else if (Pattern.compile(RegexConstant.PAY_DATE, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
+					setPayDate(paycheck, line, DateUtil.DATE_PATTERN_US_YYYY);
 				} else if (Pattern.compile(RegexConstant.REGULAR_PAY, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
 					setNumberOfHours(paycheck, line);
 					setHourlyRate(paycheck, line, 1);

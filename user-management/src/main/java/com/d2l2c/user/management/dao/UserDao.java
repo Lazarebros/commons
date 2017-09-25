@@ -3,7 +3,7 @@
  */
 package com.d2l2c.user.management.dao;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.d2l2c.user.management.bean.User;
 
@@ -11,12 +11,10 @@ import com.d2l2c.user.management.bean.User;
  * @author dayanlazare
  *
  */
-public interface UserDao {
+public interface UserDao extends JpaRepository<User, Integer> {
 
-	public User getUser(String username, String password) throws Exception;
+	public User getUser(String username) throws Exception;
 
 	public void add(User user) throws Exception;
-
-	public List<User> listUsers() throws Exception;
 
 }

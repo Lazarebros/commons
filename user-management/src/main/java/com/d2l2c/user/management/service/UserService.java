@@ -3,8 +3,6 @@
  */
 package com.d2l2c.user.management.service;
 
-import java.util.List;
-
 import com.d2l2c.user.management.bean.User;
 
 /**
@@ -17,6 +15,6 @@ public interface UserService {
 
 	public void add(User user) throws Exception;
 
-	public List<User> listUsers() throws Exception;
+	public Iterable<User> findAll() throws Exception;
 
 }

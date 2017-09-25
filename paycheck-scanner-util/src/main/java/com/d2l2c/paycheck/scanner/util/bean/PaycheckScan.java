@@ -7,10 +7,13 @@ import java.util.Date;
  * @author dayanlazare
  *
  */
-public class Paycheck {
+public class PaycheckScan {
 
 	private Long id;
-	private String companyName;
+	private String companyCode;
+	private int year;
+	private int month;
+	private int biWeek;
 	private Date startDate;
 	private Date endDate;
 	private Long numberOfHours;
@@ -19,9 +22,9 @@ public class Paycheck {
 	private BigDecimal netPay;
 	private BigDecimal reimbursement = new BigDecimal(0);
 
-	public Paycheck(String companyName) {
+	public PaycheckScan(String companyCode) {
 		super();
-		this.companyName = companyName;
+		this.companyCode = companyCode;
 	}
 
 	public Long getId() {
@@ -32,12 +35,36 @@ public class Paycheck {
 		this.id = id;
 	}
 
-	public String getCompanyName() {
-		return companyName;
+	public String getCompanyCode() {
+		return companyCode;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setCompanyCode(String companyCode) {
+		this.companyCode = companyCode;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getBiWeek() {
+		return biWeek;
+	}
+
+	public void setBiWeek(int biWeek) {
+		this.biWeek = biWeek;
 	}
 
 	public Date getStartDate() {
@@ -98,7 +125,7 @@ public class Paycheck {
 
 	@Override
 	public String toString() {
-		return "Paycheck [id=" + id + ", companyName=" + companyName + ", startDate=" + startDate + ", endDate="
+		return "PaycheckScan [id=" + id + ", companyName=" + companyCode + ", startDate=" + startDate + ", endDate="
 				+ endDate + ", numberOfHours=" + numberOfHours + ", hourlyRate=" + hourlyRate + ", grossAmount="
 				+ grossAmount + ", netPay=" + netPay + ", reimbursement=" + reimbursement + "]";
 	}
