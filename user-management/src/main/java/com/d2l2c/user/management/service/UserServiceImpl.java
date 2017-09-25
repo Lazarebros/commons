@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User validateUser(String username, String password) throws Exception {
 		User user = userDao.getUser(username);
-		if(!PasswordUtil.check(password, user.getPassword())) {
+		if(user == null || !PasswordUtil.check(password, user.getPassword())) {
 			user = null;
 		}
 		return user;
