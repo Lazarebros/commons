@@ -3,6 +3,8 @@
  */
 package com.d2l2c.user.management.service;
 
+import java.util.List;
+
 import com.d2l2c.user.management.bean.User;
 
 /**
@@ -11,10 +13,18 @@ import com.d2l2c.user.management.bean.User;
  */
 public interface UserService {
 
-	public User validateUser(String username, String password) throws Exception;
+	public User findById(Long id);
 
-	public void add(User user) throws Exception;
+	public User findByUsername(String username);
 
-	public Iterable<User> findAll() throws Exception;
+	public void save(User user);
+
+	public void update(User user);
+
+	public void deleteByUsername(String username);
+
+	public List<User> findAll();
+
+	boolean isUsernameUnique(Long id, String username);
 
 }

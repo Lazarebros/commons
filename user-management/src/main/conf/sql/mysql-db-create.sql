@@ -1,11 +1,4 @@
---
--- Table structure for tables
---
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS user_profiles;
-DROP TABLE IF EXISTS users_user_profiles;
-DROP TABLE IF EXISTS persistent_logins;
-
+/* users table contains all users */ 
 CREATE TABLE users (
   user_id bigint(20) NOT NULL AUTO_INCREMENT,
   user_name varchar(10) NOT NULL,
@@ -42,3 +35,4 @@ CREATE TABLE persistent_logins (
     last_used TIMESTAMP NOT NULL,
     PRIMARY KEY (series)
 );
+  

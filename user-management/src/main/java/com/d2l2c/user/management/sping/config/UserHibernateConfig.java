@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -23,20 +24,21 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.d2l2c.user.management.bean.User;
+import com.d2l2c.user.management.security.UserSecurityConfiguration;
 
 /**
  * @author dayanlazare
  *
  */
 @Configuration
+@Import(value={UserSecurityConfiguration.class})
 @PropertySource("classpath:user-db.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		basePackages = "com.d2l2c.user.management.dao", 
 		entityManagerFactoryRef = "userEntityManager", 
 		transactionManagerRef = "userTransactionManager")
-@ComponentScans(value = { @ComponentScan("com.d2l2c.user.management.service") })
-public class UserJPAConfig {
+@ComponentScans(value = { @ComponentScan("com.d2l2c.user.management") })
+public class UserHibernateConfig {
 
 	@Autowired
 	private Environment environment;

@@ -4,9 +4,8 @@
 package com.d2l2c.user.management.test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -15,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Optional;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -33,15 +32,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.d2l2c.user.management.bean.User;
+import com.d2l2c.user.management.bean.UserProfile;
+import com.d2l2c.user.management.service.UserProfileService;
 import com.d2l2c.user.management.service.UserService;
-import com.d2l2c.user.management.sping.config.UserJPAConfig;
+import com.d2l2c.user.management.sping.config.UserHibernateConfig;
 
 /**
  * @author dayanlazare
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { UserJPAConfig.class })
+@ContextConfiguration(classes = { UserHibernateConfig.class })
 public class UserJPATest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserJPATest.class);
@@ -50,11 +51,14 @@ public class UserJPATest {
 	private UserService userService;
 
 	@Autowired
-	private EntityManager em;
+	private UserProfileService userProfileService;
+
+	@Autowired
+	private EntityManager entityManager;
 
 	@Before
 	public void initializeDatabase() {
-		Session session = em.unwrap(Session.class);
+		Session session = entityManager.unwrap(Session.class);
 		session.doWork(new Work() {
 			@Override
 			public void execute(Connection connection) throws SQLException {
@@ -74,10 +78,10 @@ public class UserJPATest {
 	@Transactional("userTransactionManager")
 	@Test
 	public void listUsersTest() {
-		Iterable<User> users;
+		List<User> users;
 		try {
 			users = userService.findAll();
-			assertThat(users, is(not(Optional.empty())));
+			assertFalse(users.isEmpty());
 			users.forEach(user -> {
 				try {
 					assertNotNull(user.getPassword());
@@ -94,10 +98,45 @@ public class UserJPATest {
 
 	@Transactional("userTransactionManager")
 	@Test
-	public void validateUserTest() {
+	public void findByIdTest() {
 		try {
-			User user = userService.validateUser("test", "test1123");
-			assertNull(user);
+			User user = userService.findById(1L);
+			assertNotNull(user);
+			assertThat(user.getUsername(), is("Sunil"));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			fail();
+		}
+	}
+
+	@Transactional("userTransactionManager")
+	@Test
+	public void findByUsernameTest() {
+		try {
+			User user = userService.findByUsername("Sunil");
+			assertNotNull(user);
+			assertThat(user.getId(), is(1L));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			fail();
+		}
+	}
+
+	@Transactional("userTransactionManager")
+	@Test
+	public void listUserProfilesTest() {
+		List<UserProfile> userProfiles;
+		try {
+			userProfiles = userProfileService.findAll();
+			assertFalse(userProfiles.isEmpty());
+			userProfiles.forEach(userProfile -> {
+				try {
+					assertNotNull(userProfile.getType());
+				} catch (Exception e) {
+					LOGGER.error(e.getMessage());
+					fail();
+				}
+			});
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 			fail();
