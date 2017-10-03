@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,6 +28,8 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,14 +38,14 @@ import com.d2l2c.user.management.bean.User;
 import com.d2l2c.user.management.bean.UserProfile;
 import com.d2l2c.user.management.service.UserProfileService;
 import com.d2l2c.user.management.service.UserService;
-import com.d2l2c.user.management.sping.config.UserHibernateConfig;
+import com.d2l2c.user.management.sping.config.UserJPAConfig;
 
 /**
  * @author dayanlazare
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { UserHibernateConfig.class })
+@ContextConfiguration(classes = { UserJPAConfig.class })
 public class UserJPATest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserJPATest.class);
@@ -52,6 +55,9 @@ public class UserJPATest {
 
 	@Autowired
 	private UserProfileService userProfileService;
+
+	@Autowired
+	PersistentTokenRepository tokenRepository;
 
 	@Autowired
 	private EntityManager entityManager;
@@ -137,6 +143,37 @@ public class UserJPATest {
 					fail();
 				}
 			});
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			fail();
+		}
+	}
+
+	@Transactional("userTransactionManager")
+	@Test
+	public void getPersistentLoginTest() {
+		PersistentRememberMeToken rememberMeToken;
+		try {
+			rememberMeToken = tokenRepository.getTokenForSeries("test");
+			assertNotNull(rememberMeToken);
+			assertThat(rememberMeToken.getUsername(), is("test"));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			fail();
+		}
+	}
+
+	@Transactional("userTransactionManager")
+	@Test
+	public void savePersistentLoginTest() {
+		PersistentRememberMeToken rememberMeToken = new PersistentRememberMeToken("test1", "test1", "test1", new Date());
+		try {
+			tokenRepository.createNewToken(rememberMeToken);
+			
+			PersistentRememberMeToken entity = tokenRepository.getTokenForSeries("test1");
+			
+			assertNotNull(entity);
+			assertThat(entity.getUsername(), is("test1"));
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 			fail();

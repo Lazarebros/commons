@@ -1,4 +1,4 @@
-package com.d2l2c.user.management.security;
+package com.d2l2c.user.management.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.d2l2c.user.management.bean.User;
 import com.d2l2c.user.management.bean.UserProfile;
-import com.d2l2c.user.management.service.UserService;
 
 @Service("customUserDetailsService")
+@Transactional(value = "userTransactionManager", readOnly = true)
 public class CustomUserDetailsService implements UserDetailsService {
 
 	static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
@@ -26,7 +26,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	private UserService userService;
 
-	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userService.findByUsername(username);
 		logger.info("User : {}", user);

@@ -1,4 +1,4 @@
-package com.d2l2c.user.management.security;
+package com.d2l2c.user.management.sping.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,8 +47,8 @@ public class UserSecurityConfiguration {
 
 	@Bean
 	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
-		PersistentTokenBasedRememberMeServices tokenBasedservice = 
-				new PersistentTokenBasedRememberMeServices("remember-me", userDetailsService, tokenRepository);
+		PersistentTokenBasedRememberMeServices tokenBasedservice = new PersistentTokenBasedRememberMeServices(
+				"remember-me", userDetailsService, tokenRepository);
 		return tokenBasedservice;
 	}
 

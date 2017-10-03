@@ -10,7 +10,7 @@ import com.d2l2c.user.management.bean.UserProfile;
 import com.d2l2c.user.management.dao.UserProfileDao;
 
 @Service("userProfileService")
-@Transactional
+@Transactional("userTransactionManager")
 public class UserProfileServiceImpl implements UserProfileService {
 
 	@Autowired

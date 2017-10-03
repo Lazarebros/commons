@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.d2l2c.user.management.bean.PersistentLogin;
 
 @Repository("tokenRepositoryDao")
-@Transactional
+@Transactional("userTransactionManager")
 public class HibernateTokenRepositoryImpl extends AbstractDao<String, PersistentLogin> implements PersistentTokenRepository {
 
 	static final Logger logger = LoggerFactory.getLogger(HibernateTokenRepositoryImpl.class);

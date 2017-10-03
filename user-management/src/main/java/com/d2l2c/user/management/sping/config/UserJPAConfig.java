@@ -24,7 +24,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.d2l2c.user.management.bean.User;
-import com.d2l2c.user.management.security.UserSecurityConfiguration;
 
 /**
  * @author dayanlazare
@@ -38,7 +37,7 @@ import com.d2l2c.user.management.security.UserSecurityConfiguration;
 		entityManagerFactoryRef = "userEntityManager", 
 		transactionManagerRef = "userTransactionManager")
 @ComponentScans(value = { @ComponentScan("com.d2l2c.user.management") })
-public class UserHibernateConfig {
+public class UserJPAConfig {
 
 	@Autowired
 	private Environment environment;
