@@ -100,7 +100,7 @@ public class User implements Serializable {
 	}
 
 	@NotEmpty
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "users_user_profiles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "profile_id") })
 	public Set<UserProfile> getUserProfiles() {
