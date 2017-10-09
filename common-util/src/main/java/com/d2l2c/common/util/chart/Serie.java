@@ -12,9 +12,10 @@ public class Serie {
 	
 	private String name;
 	private String type;
-	private List<String> data;
+	private boolean smooth = true;
+	private List<Object> data;
 	
-	public Serie(String name, String type, List<String> data) {
+	public Serie(String name, String type, List<Object> data) {
 		this.name = name;
 		this.type = type;
 		this.data = data;
@@ -35,12 +36,20 @@ public class Serie {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	public boolean isSmooth() {
+		return smooth;
+	}
 
-	public List<String> getData() {
+	public void setSmooth(boolean smooth) {
+		this.smooth = smooth;
+	}
+
+	public List<Object> getData() {
 		return data;
 	}
 
-	public void setData(List<String> data) {
+	public void setData(List<Object> data) {
 		this.data = data;
 	}
 

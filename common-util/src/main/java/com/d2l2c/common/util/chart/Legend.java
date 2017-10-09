@@ -1,23 +1,23 @@
 package com.d2l2c.common.util.chart;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author dayanlazare
  */
 public class Legend {
 
-	private List<String> data;
+	private Collection<String> data;
 
-	public Legend(List<String> data) {
+	public Legend(Collection<String> data) {
 		this.data = data;
 	}
 
-	public List<String> getData() {
+	public Collection<String> getData() {
 		return data;
 	}
 
-	public void setData(List<String> data) {
+	public void setData(Collection<String> data) {
 		this.data = data;
 	}
 
