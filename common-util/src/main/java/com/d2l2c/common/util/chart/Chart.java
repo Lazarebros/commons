@@ -12,10 +12,16 @@ public class Chart {
 	private Legend legend;
 	private Axis xAxis;
 	private Axis yAxis;
+	private Grid grid;
 	private List<Serie> series = new ArrayList<Serie>();
 
 	public Chart() {
 		super();
+	}
+
+	public Chart(Grid grid) {
+		super();
+		this.grid = grid;
 	}
 
 	public Chart(Title title, Legend legend, Axis xAxis, Axis yAxis) {
@@ -80,6 +86,14 @@ public class Chart {
 
 	public void setyAxis(Axis yAxis) {
 		this.yAxis = yAxis;
+	}
+	
+	public Grid getGrid() {
+		return grid;
+	}
+
+	public void setGrid(Grid grid) {
+		this.grid = grid;
 	}
 
 	public List<Serie> getSeries() {

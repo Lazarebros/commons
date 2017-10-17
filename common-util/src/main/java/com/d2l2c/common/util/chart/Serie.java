@@ -7,9 +7,6 @@ import java.util.List;
  */
 public class Serie {
 	
-	public static final String LINE_TYPE = "line";
-	public static final String BAR_TYPE = "bar";
-	
 	private String name;
 	private String type;
 	private boolean smooth = true;
