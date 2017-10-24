@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Chart {
 	private String backgroundColor = "transparent";
-	private List<String> color = Arrays.asList("#FDFE53","#FF395A", "#40D994", "#d48265", "#91c7ae","#749f83",  "#ca8622", "#bda29a","#6e7074", "#546570", "#c4ccd3");
+	private List<String> color = Arrays.asList("#384995", "#FF395A", "#FDFE53","#40D994", "#d48265", "#91c7ae","#749f83",  "#ca8622", "#bda29a","#6e7074", "#546570", "#c4ccd3");
 	private Title title;
 	private Tooltip tooltip;
 	private Legend legend;

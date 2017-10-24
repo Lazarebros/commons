@@ -6,15 +6,17 @@ import java.util.List;
  * @author dayanlazare
  */
 public class Serie {
-	
+
 	private String name;
 	private String type;
+	private Integer barMaxWidth;
 	private boolean smooth = true;
 	private List<Object> data;
-	
-	public Serie(String name, String type, List<Object> data) {
+
+	public Serie(String name, String type, Integer barMaxWidth, List<Object> data) {
 		this.name = name;
 		this.type = type;
+		this.barMaxWidth = barMaxWidth;
 		this.data = data;
 	}
 
@@ -33,7 +35,15 @@ public class Serie {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
+	public Integer getBarMaxWidth() {
+		return barMaxWidth;
+	}
+
+	public void setBarMaxWidth(Integer barMaxWidth) {
+		this.barMaxWidth = barMaxWidth;
+	}
+
 	public boolean isSmooth() {
 		return smooth;
 	}
