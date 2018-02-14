@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.d2l2c.common.util.date.DateUtil;
 import com.d2l2c.paycheck.scanner.util.bean.PaycheckScan;
+import com.d2l2c.paycheck.scanner.util.constants.Constants;
 import com.d2l2c.paycheck.scanner.util.constants.RegexConstant;
 
 /**
@@ -23,11 +24,9 @@ public class MS3PaycheckExtractor extends AbstractPaycheckExtractor {
 
 	private static final Logger logger = LoggerFactory.getLogger(MS3PaycheckExtractor.class);
 
-	public static final String COMPANY_CODE = "MS3";
-
 	@Override
 	public PaycheckScan parse(String content) {
-		PaycheckScan paycheck = new PaycheckScan(COMPANY_CODE);
+		PaycheckScan paycheck = new PaycheckScan(Constants.MS3_COMPANY_CODE, Constants.MS3_COMPANY_NAME);
 		try (BufferedReader reader = new BufferedReader(new StringReader(content));
 				LineNumberReader lineReader = new LineNumberReader(reader);) {
 

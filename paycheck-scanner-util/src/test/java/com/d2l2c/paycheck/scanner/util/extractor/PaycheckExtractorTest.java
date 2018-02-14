@@ -14,6 +14,7 @@ import org.junit.Test;
 import com.d2l2c.common.util.date.DateUtil;
 import com.d2l2c.common.util.scanner.ScannerUtil;
 import com.d2l2c.paycheck.scanner.util.bean.PaycheckScan;
+import com.d2l2c.paycheck.scanner.util.constants.Constants;
 
 /**
  * @author dayanlazare
@@ -29,7 +30,7 @@ public class PaycheckExtractorTest {
 	public void testMS3Parse() {
 		PaycheckScan paycheckScan = this.getPaycheck(MS3_FILE_NAME);
 
-		assertThat(paycheckScan.getCompanyCode(), is(MS3PaycheckExtractor.COMPANY_CODE));
+		assertThat(paycheckScan.getCompanyCode(), is(Constants.MS3_COMPANY_CODE));
 		assertThat(paycheckScan.getYear(), is(2017));
 		assertThat(paycheckScan.getMonth(), is(8));
 		assertThat(paycheckScan.getBiWeek(), is(1));
@@ -46,7 +47,7 @@ public class PaycheckExtractorTest {
 	public void testMMIParse() {
 		PaycheckScan paycheckScan = this.getPaycheck(MMI_FILE_NAME);
 		
-		assertThat(paycheckScan.getCompanyCode(), is(MMIPaycheckExtractor.COMPANY_CODE));
+		assertThat(paycheckScan.getCompanyCode(), is(Constants.MMI_COMPANY_CODE));
 		assertThat(paycheckScan.getYear(), is(2015));
 		assertThat(paycheckScan.getMonth(), is(5));
 		assertThat(paycheckScan.getBiWeek(), is(2));

@@ -11,6 +11,7 @@ public class PaycheckScan {
 
 	private Long id;
 	private String companyCode;
+	private String companyName;
 	private int year;
 	private int month;
 	private int biWeek;
@@ -22,9 +23,10 @@ public class PaycheckScan {
 	private BigDecimal netPay;
 	private BigDecimal reimbursement = new BigDecimal(0);
 
-	public PaycheckScan(String companyCode) {
+	public PaycheckScan(String companyCode, String companyName) {
 		super();
 		this.companyCode = companyCode;
+		this.companyName = companyName;
 	}
 
 	public Long getId() {
@@ -41,6 +43,14 @@ public class PaycheckScan {
 
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
+	}
+	
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public int getYear() {

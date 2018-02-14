@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.d2l2c.common.util.date.DateUtil;
 import com.d2l2c.paycheck.scanner.util.bean.PaycheckScan;
+import com.d2l2c.paycheck.scanner.util.constants.Constants;
 import com.d2l2c.paycheck.scanner.util.constants.RegexConstant;
 
 /**
@@ -23,11 +24,9 @@ public class MMIPaycheckExtractor extends AbstractPaycheckExtractor {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MMIPaycheckExtractor.class);
 
-	public static final String COMPANY_CODE = "MMI";
-
 	@Override
 	public PaycheckScan parse(String content) {
-		PaycheckScan paycheck = new PaycheckScan(COMPANY_CODE);
+		PaycheckScan paycheck = new PaycheckScan(Constants.MMI_COMPANY_CODE, Constants.MMI_COMPANY_NAME);
 		try (BufferedReader reader = new BufferedReader(new StringReader(content));
 				LineNumberReader lineReader = new LineNumberReader(reader);) {
 
