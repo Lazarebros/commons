@@ -41,8 +41,12 @@ public class PaycheckExtractorTest {
 		assertThat(paycheckScan.getGrossAmount(), is(new BigDecimal("11900.00")));
 		assertThat(paycheckScan.getNetPay(), is(new BigDecimal("15665.16")));
 		assertThat(paycheckScan.getReimbursement(), is(new BigDecimal("7092.02")));
-		assertThat(paycheckScan.getExpectedGross(), is(new BigDecimal("8000.00")));
-		assertThat(paycheckScan.getExpectedNetPay(), is(new BigDecimal("5360.00")));
+		
+		BigDecimal expectedGross = paycheckScan.getHourlyRate().multiply(new BigDecimal(paycheckScan.getExpectedNumberOfHours())).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+		BigDecimal expectedNetPay = expectedGross.multiply(paycheckScan.getNetPercentageOfGross()).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+		
+		assertThat(expectedGross, is(new BigDecimal("8000.00")));
+		assertThat(expectedNetPay, is(new BigDecimal("5360.00")));
 	}
 
 	@Test
@@ -60,8 +64,12 @@ public class PaycheckExtractorTest {
 		assertThat(paycheckScan.getGrossAmount(), is(new BigDecimal("8586.00")));
 		assertThat(paycheckScan.getNetPay(), is(new BigDecimal("5664.67")));
 		assertThat(paycheckScan.getReimbursement(), is(new BigDecimal(0)));
-		assertThat(paycheckScan.getExpectedGross(), is(new BigDecimal("6480.00")));
-		assertThat(paycheckScan.getExpectedNetPay(), is(new BigDecimal("4341.60")));
+
+		BigDecimal expectedGross = paycheckScan.getHourlyRate().multiply(new BigDecimal(paycheckScan.getExpectedNumberOfHours())).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+		BigDecimal expectedNetPay = expectedGross.multiply(paycheckScan.getNetPercentageOfGross()).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+		
+		assertThat(expectedGross, is(new BigDecimal("6480.00")));
+		assertThat(expectedNetPay, is(new BigDecimal("4341.60")));
 	}
 	
 	private PaycheckScan getPaycheck(String fileName) {

@@ -11,6 +11,10 @@ import com.d2l2c.paycheck.scanner.util.constants.Constants;
  */
 public class PaycheckScan {
 
+	private static final Long EXPECTED_NUMBER_OF_HOURS = 80L;
+	
+	private static final BigDecimal DEFAULT_NET_PERCENTAGE_OF_GROSS = new BigDecimal("0.67");
+
 	private Long id;
 	private String companyCode;
 	private String companyName;
@@ -136,11 +140,15 @@ public class PaycheckScan {
 	}
 	
 	public BigDecimal getExpectedGross() {
-		return hourlyRate.multiply(new BigDecimal(Constants.DEFAULT_BI_WEEKLY_NUMBER_OF_HOURS)).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+		return hourlyRate.multiply(new BigDecimal(EXPECTED_NUMBER_OF_HOURS)).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+	}
+	
+	public Long getExpectedNumberOfHours() {
+		return EXPECTED_NUMBER_OF_HOURS;
 	}
 
-	public BigDecimal getExpectedNetPay() {
-		return this.getExpectedGross().multiply(new BigDecimal(Constants.DEFAULT_NET_PERCENTAGE)).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+	public BigDecimal getNetPercentageOfGross() {
+		return DEFAULT_NET_PERCENTAGE_OF_GROSS;
 	}
 
 	@Override
