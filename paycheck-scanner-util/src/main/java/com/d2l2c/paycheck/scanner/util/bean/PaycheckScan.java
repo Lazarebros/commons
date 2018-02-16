@@ -3,6 +3,8 @@ package com.d2l2c.paycheck.scanner.util.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.d2l2c.paycheck.scanner.util.constants.Constants;
+
 /**
  * @author dayanlazare
  *
@@ -131,6 +133,14 @@ public class PaycheckScan {
 
 	public void setReimbursement(BigDecimal reimbursement) {
 		this.reimbursement = this.reimbursement.add(reimbursement);
+	}
+	
+	public BigDecimal getExpectedGross() {
+		return hourlyRate.multiply(new BigDecimal(Constants.DEFAULT_BI_WEEKLY_NUMBER_OF_HOURS)).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+	}
+
+	public BigDecimal getExpectedNetPay() {
+		return this.getExpectedGross().multiply(new BigDecimal(Constants.DEFAULT_NET_PERCENTAGE)).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
 	}
 
 	@Override

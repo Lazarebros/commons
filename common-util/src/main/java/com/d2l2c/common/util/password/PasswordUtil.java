@@ -17,7 +17,7 @@ public class PasswordUtil {
 	}
 	
 //	public static void main(String[] args) {
-//		String password = "test";
+//		String password = "";
 //		System.out.println(encode(password));
 //	}
 
