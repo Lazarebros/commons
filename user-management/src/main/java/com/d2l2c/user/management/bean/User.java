@@ -40,6 +40,8 @@ public class User implements Serializable {
 
 	private String lastName;
 
+	private boolean enabled;
+
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
 	public User() {
@@ -97,6 +99,15 @@ public class User implements Serializable {
 
 	public void setLastName(String lastname) {
 		this.lastName = lastname;
+	}
+
+	@Column(name = "enabled")
+	public boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@NotEmpty

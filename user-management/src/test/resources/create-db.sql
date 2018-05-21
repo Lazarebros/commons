@@ -12,6 +12,7 @@ CREATE TABLE users (
   password varchar(64) NOT NULL,
   first_name varchar(255) DEFAULT NULL,
   last_name varchar(255) DEFAULT NULL,
+  enabled BIT,
   PRIMARY KEY (user_id),
   UNIQUE (user_name)
 );
