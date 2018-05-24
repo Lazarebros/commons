@@ -28,7 +28,7 @@ public class HttpUtil {
 
 	private static final String USER_AGENT = "Mozilla/5.0";
 
-	public static String send(String url, String username, String password) {
+	public static String send(String url, String username, String password) throws Exception {
 		CredentialsProvider provider = new BasicCredentialsProvider();
 		UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(username, password);
 		provider.setCredentials(AuthScope.ANY, credentials);
@@ -37,12 +37,12 @@ public class HttpUtil {
 		return send(client, url);
 	}
 
-	public static String send(String url) {
+	public static String send(String url) throws Exception {
 		HttpClient client = HttpClientBuilder.create().build();
 		return send(client, url);
 	}
 
-	private static String send(HttpClient client, String url) {
+	private static String send(HttpClient client, String url) throws Exception {
 		HttpGet request = new HttpGet(url);
 
 		BufferedReader rd = null;
@@ -62,8 +62,6 @@ public class HttpUtil {
 			while ((line = rd.readLine()) != null) {
 				result.append(line);
 			}
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage());
 		} finally {
 			if (rd != null) {
 				try {

@@ -30,6 +30,7 @@ public class UserSecurityConfiguration {
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
 		auth.authenticationProvider(authenticationProvider());
+		auth.eraseCredentials(false);
 	}
 
 	@Bean
