@@ -4,10 +4,8 @@
 package com.d2l2c.paycheck.scanner.util.extractor;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
-
-import org.joda.time.DateTime;
 
 import com.d2l2c.paycheck.scanner.util.bean.PaycheckScan;
 import com.d2l2c.paycheck.scanner.util.parser.ParserUtil;
@@ -21,7 +19,7 @@ public abstract class AbstractPaycheckExtractor {
 	public abstract PaycheckScan parse(String content);
 	
 	protected void setDates(PaycheckScan paycheck, String line, String pattern) {
-		List<Date> dates = ParserUtil.getDates(line, pattern);
+		List<LocalDate> dates = ParserUtil.getDates(line, pattern);
 		if(dates.size() > 1) {
 			paycheck.setStartDate(dates.get(0));
 			paycheck.setEndDate(dates.get(1));
@@ -29,12 +27,13 @@ public abstract class AbstractPaycheckExtractor {
 	}
 	
 	protected void setPayDate(PaycheckScan paycheck, String line, String pattern) {
-		List<Date> dates = ParserUtil.getDates(line, pattern);
+		List<LocalDate> dates = ParserUtil.getDates(line, pattern);
 		if(!dates.isEmpty()) {
-			DateTime dateTime = new DateTime(dates.get(0));
-			paycheck.setYear(dateTime.getYear());
-			paycheck.setMonth(dateTime.getMonthOfYear());
-			paycheck.setBiWeek((dateTime.getDayOfMonth() < 16) ? 1 : 2);
+			LocalDate localDate = dates.get(0);
+			paycheck.setPayDate(localDate);
+			paycheck.setYear(localDate.getYear());
+			paycheck.setMonth(localDate.getMonthValue());
+			paycheck.setBiWeek((localDate.getDayOfMonth() < 16) ? 1 : 2);
 		}
 	}
 

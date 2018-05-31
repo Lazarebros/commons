@@ -1,11 +1,9 @@
 package com.d2l2c.common.util.date;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 /**
  * 
@@ -20,26 +18,17 @@ public class DateUtil {
 
 	public static final String DATE_PATTERN_US_YY = "MM/dd/yy";
 	
-	public static Date stringToDate(String sDate, String pattern) {
-		Date date = null;
-		DateTime dt = stringToDateTime(sDate, pattern);
-		if (dt != null) {
-			date = dt.toDate();
-		}
-		return date;
-	}
-
-	public static DateTime stringToDateTime(String sDate, String pattern) {
-		DateTime dateTime = null;
+	public static LocalDate stringToLocalDate(String sDate, String pattern) {
+		LocalDate localDate = null;
 		if (StringUtils.isNotBlank(sDate)) {
-			DateTimeFormatter formatter = DateTimeFormat.forPattern(pattern);
-			dateTime = formatter.parseDateTime(sDate);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+			localDate = LocalDate.parse(sDate, formatter);
 		}
-		return dateTime;
+		return localDate;
 	}
 	
-	public static String getMonth(int monthIndex) {
-		return DateTime.now().withMonthOfYear(monthIndex).toString("MMM");
-	}
+//	public static String getMonth(int monthIndex) {
+//		return DateTime.now().withMonthOfYear(monthIndex).toString("MMM");
+//	}
 
 }

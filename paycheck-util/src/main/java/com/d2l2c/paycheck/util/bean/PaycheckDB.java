@@ -16,6 +16,7 @@ public class PaycheckDB {
 	private String companyCode;
 	private int year;
 	private int month;
+	private Date payDate;
 	private Date startDate;
 	private Date endDate;
 	private Long numberOfHours;
@@ -56,6 +57,14 @@ public class PaycheckDB {
 
 	public void setMonth(int month) {
 		this.month = month;
+	}
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
 	}
 
 	public Date getStartDate() {

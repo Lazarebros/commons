@@ -13,6 +13,8 @@ public class PaycheckUnit {
 
 	private Long id;
 	private String companyCode;
+	private int biWeek;
+	private String payDate;
 	private String startDate;
 	private String endDate;
 	private Long numberOfHours;
@@ -34,6 +36,22 @@ public class PaycheckUnit {
 
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
+	}
+
+	public int getBiWeek() {
+		return biWeek;
+	}
+
+	public void setBiWeek(int biWeek) {
+		this.biWeek = biWeek;
+	}
+
+	public String getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(String payDate) {
+		this.payDate = payDate;
 	}
 
 	public String getStartDate() {
