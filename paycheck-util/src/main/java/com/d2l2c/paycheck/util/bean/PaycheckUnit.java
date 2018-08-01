@@ -21,6 +21,7 @@ public class PaycheckUnit {
 	private BigDecimal grossAmount;
 	private BigDecimal netPay;
 	private BigDecimal reimbursement;
+	private BigDecimal netPayReal;
 
 	public Long getId() {
 		return id;
@@ -100,6 +101,14 @@ public class PaycheckUnit {
 
 	public void setReimbursement(BigDecimal reimbursement) {
 		this.reimbursement = reimbursement;
+	}
+
+	public BigDecimal getNetPayReal() {
+		return netPayReal;
+	}
+
+	public void setNetPayReal(BigDecimal netPayReal) {
+		this.netPayReal = netPayReal;
 	}
 
 }

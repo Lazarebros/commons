@@ -18,6 +18,7 @@ public class PaycheckDetail {
 	private BigDecimal expectedNetPay;
 	private BigDecimal netPay;
 	private BigDecimal reimbursement;
+	private BigDecimal netPayReal;
 
 	private Collection<PaycheckUnit> paychecks = new ArrayList<PaycheckUnit>();
 
@@ -95,6 +96,14 @@ public class PaycheckDetail {
 
 	public void add(PaycheckUnit paycheckUnit) {
 		paychecks.add(paycheckUnit);
+	}
+
+	public BigDecimal getNetPayReal() {
+		return netPayReal;
+	}
+
+	public void setNetPayReal(BigDecimal netPayReal) {
+		this.netPayReal = netPayReal;
 	}
 
 }
