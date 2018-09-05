@@ -31,11 +31,10 @@ public class PaycheckExtractorTest {
 		PaycheckScan paycheckScan = this.getPaycheck(MS3_FILE_NAME);
 
 		assertThat(paycheckScan.getCompanyCode(), is(Constants.MS3_COMPANY_CODE));
-		assertThat(paycheckScan.getYear(), is(2017));
-		assertThat(paycheckScan.getMonth(), is(8));
 		assertThat(paycheckScan.getBiWeek(), is(1));
-		assertThat(paycheckScan.getStartDate(), is(DateUtil.stringToDate("07/16/2017", DateUtil.DATE_PATTERN_US_YYYY)));
-		assertThat(paycheckScan.getEndDate(), is(DateUtil.stringToDate("07/31/2017", DateUtil.DATE_PATTERN_US_YYYY)));
+		assertThat(paycheckScan.getPayDate(), is(DateUtil.stringToLocalDate("08/15/2017", DateUtil.DATE_PATTERN_US_YYYY)));
+		assertThat(paycheckScan.getStartDate(), is(DateUtil.stringToLocalDate("07/16/2017", DateUtil.DATE_PATTERN_US_YYYY)));
+		assertThat(paycheckScan.getEndDate(), is(DateUtil.stringToLocalDate("07/31/2017", DateUtil.DATE_PATTERN_US_YYYY)));
 		assertThat(paycheckScan.getNumberOfHours(), is(119L));
 		assertThat(paycheckScan.getHourlyRate(), is(new BigDecimal("100.00")));
 		assertThat(paycheckScan.getGrossAmount(), is(new BigDecimal("11900.00")));
@@ -54,11 +53,10 @@ public class PaycheckExtractorTest {
 		PaycheckScan paycheckScan = this.getPaycheck(MMI_FILE_NAME);
 		
 		assertThat(paycheckScan.getCompanyCode(), is(Constants.MMI_COMPANY_CODE));
-		assertThat(paycheckScan.getYear(), is(2015));
-		assertThat(paycheckScan.getMonth(), is(5));
 		assertThat(paycheckScan.getBiWeek(), is(2));
-		assertThat(paycheckScan.getStartDate(), is(DateUtil.stringToDate("05/11/2015", DateUtil.DATE_PATTERN_US_YYYY)));
-		assertThat(paycheckScan.getEndDate(), is(DateUtil.stringToDate("05/24/2015", DateUtil.DATE_PATTERN_US_YYYY)));
+		assertThat(paycheckScan.getPayDate(), is(DateUtil.stringToLocalDate("05/29/2015", DateUtil.DATE_PATTERN_US_YYYY)));
+		assertThat(paycheckScan.getStartDate(), is(DateUtil.stringToLocalDate("05/11/2015", DateUtil.DATE_PATTERN_US_YYYY)));
+		assertThat(paycheckScan.getEndDate(), is(DateUtil.stringToLocalDate("05/24/2015", DateUtil.DATE_PATTERN_US_YYYY)));
 		assertThat(paycheckScan.getNumberOfHours(), is(106L));
 		assertThat(paycheckScan.getHourlyRate(), is(new BigDecimal("81.0000")));
 		assertThat(paycheckScan.getGrossAmount(), is(new BigDecimal("8586.00")));

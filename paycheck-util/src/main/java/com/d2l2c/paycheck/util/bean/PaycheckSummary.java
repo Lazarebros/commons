@@ -4,13 +4,13 @@
 package com.d2l2c.paycheck.util.bean;
 
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author dlazare
  *
  */
-public class PaycheckSummary {
+public class PaycheckSummary implements Comparable<PaycheckSummary> {
 
 	private int year;
 	private int yearProgress;
@@ -25,7 +25,7 @@ public class PaycheckSummary {
 	private BigDecimal netPayRemain;
 	private BigDecimal netPayRealMean;
 
-	private Collection<PaycheckDetail> paycheckDetails = null;
+	private List<PaycheckDetail> paycheckDetails = null;
 
 	public int getYear() {
 		return year;
@@ -123,16 +123,21 @@ public class PaycheckSummary {
 		this.netPayRealMean = netPayRealMean;
 	}
 
-	public Collection<PaycheckDetail> getPaycheckDetails() {
+	public List<PaycheckDetail> getPaycheckDetails() {
 		return paycheckDetails;
 	}
 
-	public void setPaycheckDetails(Collection<PaycheckDetail> paycheckDetail) {
+	public void setPaycheckDetails(List<PaycheckDetail> paycheckDetail) {
 		this.paycheckDetails = paycheckDetail;
 	}
 
 	public void add(PaycheckDetail paycheckDetail) {
 		paycheckDetails.add(paycheckDetail);
+	}
+
+	@Override
+	public int compareTo(PaycheckSummary o) {
+		return this.year - o.getYear();
 	}
 
 }

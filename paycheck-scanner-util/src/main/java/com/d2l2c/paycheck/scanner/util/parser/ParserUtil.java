@@ -4,8 +4,8 @@
 package com.d2l2c.paycheck.scanner.util.parser;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,11 +19,11 @@ import com.d2l2c.paycheck.scanner.util.constants.RegexConstant;
  */
 public class ParserUtil {
 
-	public static List<Date> getDates(String content, String pattern) {
-		List<Date> dates = new ArrayList<Date>();
+	public static List<LocalDate> getDates(String content, String pattern) {
+		List<LocalDate> dates = new ArrayList<LocalDate>();
 		Matcher m = Pattern.compile(RegexConstant.DATE).matcher(content);
 		while (m.find()) {
-			dates.add(DateUtil.stringToDate(m.group(), pattern));
+			dates.add(DateUtil.stringToLocalDate(m.group(), pattern));
 		}
 		return dates;
 	}

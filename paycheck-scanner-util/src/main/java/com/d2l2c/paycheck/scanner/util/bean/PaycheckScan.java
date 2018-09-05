@@ -1,7 +1,7 @@
 package com.d2l2c.paycheck.scanner.util.bean;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.d2l2c.paycheck.scanner.util.constants.Constants;
 
@@ -12,7 +12,7 @@ import com.d2l2c.paycheck.scanner.util.constants.Constants;
 public class PaycheckScan {
 
 	private static final Long EXPECTED_NUMBER_OF_HOURS = 80L;
-	
+
 	private static final BigDecimal DEFAULT_NET_PERCENTAGE_OF_GROSS = new BigDecimal("0.67");
 
 	private Long id;
@@ -21,8 +21,9 @@ public class PaycheckScan {
 	private int year;
 	private int month;
 	private int biWeek;
-	private Date startDate;
-	private Date endDate;
+	private LocalDate payDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private Long numberOfHours;
 	private BigDecimal hourlyRate;
 	private BigDecimal grossAmount;
@@ -50,7 +51,7 @@ public class PaycheckScan {
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
 	}
-	
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -83,19 +84,27 @@ public class PaycheckScan {
 		this.biWeek = biWeek;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(LocalDate payDate) {
+		this.payDate = payDate;
+	}
+
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
@@ -138,11 +147,12 @@ public class PaycheckScan {
 	public void setReimbursement(BigDecimal reimbursement) {
 		this.reimbursement = this.reimbursement.add(reimbursement);
 	}
-	
+
 	public BigDecimal getExpectedGross() {
-		return hourlyRate.multiply(new BigDecimal(EXPECTED_NUMBER_OF_HOURS)).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
+		return hourlyRate.multiply(new BigDecimal(EXPECTED_NUMBER_OF_HOURS)).setScale(Constants.COMPUTE_SCALE,
+				BigDecimal.ROUND_HALF_UP);
 	}
-	
+
 	public Long getExpectedNumberOfHours() {
 		return EXPECTED_NUMBER_OF_HOURS;
 	}

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.d2l2c.paycheck.scanner.util.extractor;
 
 import java.io.BufferedReader;

@@ -13,12 +13,15 @@ public class PaycheckUnit {
 
 	private Long id;
 	private String companyCode;
+	private int biWeek;
+	private String payDate;
 	private String startDate;
 	private String endDate;
 	private Long numberOfHours;
 	private BigDecimal grossAmount;
 	private BigDecimal netPay;
 	private BigDecimal reimbursement;
+	private BigDecimal netPayReal;
 
 	public Long getId() {
 		return id;
@@ -34,6 +37,22 @@ public class PaycheckUnit {
 
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
+	}
+
+	public int getBiWeek() {
+		return biWeek;
+	}
+
+	public void setBiWeek(int biWeek) {
+		this.biWeek = biWeek;
+	}
+
+	public String getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(String payDate) {
+		this.payDate = payDate;
 	}
 
 	public String getStartDate() {
@@ -82,6 +101,14 @@ public class PaycheckUnit {
 
 	public void setReimbursement(BigDecimal reimbursement) {
 		this.reimbursement = reimbursement;
+	}
+
+	public BigDecimal getNetPayReal() {
+		return netPayReal;
+	}
+
+	public void setNetPayReal(BigDecimal netPayReal) {
+		this.netPayReal = netPayReal;
 	}
 
 }
