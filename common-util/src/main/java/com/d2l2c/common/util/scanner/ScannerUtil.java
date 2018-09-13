@@ -39,7 +39,7 @@ public class ScannerUtil {
 
 	public static String scanFileToText(InputStream inputStream) throws Exception {
 		AutoDetectParser parser = new AutoDetectParser();
-		BodyContentHandler handler = new BodyContentHandler();
+		BodyContentHandler handler = new BodyContentHandler(-1);
 		Metadata metadata = new Metadata();
 		ParseContext pcontext = new ParseContext();
 
