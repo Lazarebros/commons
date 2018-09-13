@@ -7,10 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.parser.AutoDetectParser;
-import org.apache.tika.parser.ParseContext;
-import org.apache.tika.sax.BodyContentHandler;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,13 +36,8 @@ public class ScannerUtil {
 	}
 
 	public static String scanFileToText(InputStream inputStream) throws Exception {
-		AutoDetectParser parser = new AutoDetectParser();
-		BodyContentHandler handler = new BodyContentHandler(-1);
-		Metadata metadata = new Metadata();
-		ParseContext pcontext = new ParseContext();
-
-		parser.parse(inputStream, handler, metadata, pcontext);
-		return handler.toString();
+		PDDocument doc = PDDocument.load(inputStream);
+	    return new PDFTextStripper().getText(doc);
 	}
 	
 	
