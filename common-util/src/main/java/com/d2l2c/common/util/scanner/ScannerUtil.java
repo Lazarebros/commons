@@ -36,10 +36,11 @@ public class ScannerUtil {
 	}
 
 	public static String scanFileToText(InputStream inputStream) throws Exception {
+		String content = null;
 		PDDocument doc = PDDocument.load(inputStream);
-	    return new PDFTextStripper().getText(doc);
+		content = new PDFTextStripper().getText(doc);
+		doc.close();
+		return content;
 	}
-	
-	
 
 }

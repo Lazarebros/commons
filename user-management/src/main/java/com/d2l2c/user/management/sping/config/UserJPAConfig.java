@@ -31,11 +31,9 @@ import com.d2l2c.user.management.bean.User;
  */
 @Configuration
 @Import(value={UserSecurityConfiguration.class})
-@PropertySource("classpath:user-db.properties")
+@PropertySource(value = "classpath:user-db-test.properties", ignoreResourceNotFound = true)
 @EnableTransactionManagement
-@EnableJpaRepositories(
-		entityManagerFactoryRef = "userEntityManager", 
-		transactionManagerRef = "userTransactionManager")
+@EnableJpaRepositories(entityManagerFactoryRef = "userEntityManager", transactionManagerRef = "userTransactionManager")
 @ComponentScans(value = { @ComponentScan("com.d2l2c.user.management") })
 public class UserJPAConfig {
 

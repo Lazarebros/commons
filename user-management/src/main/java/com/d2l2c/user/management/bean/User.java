@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -40,7 +41,7 @@ public class User implements Serializable {
 
 	private String lastName;
 
-	private boolean enabled;
+	private char enabledChar;
 
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
@@ -102,12 +103,21 @@ public class User implements Serializable {
 	}
 
 	@Column(name = "enabled")
-	public boolean getEnabled() {
-		return enabled;
+	public char getEnabledChar() {
+		return enabledChar;
+	}
+
+	public void setEnabledChar(char enabledChar) {
+		this.enabledChar = enabledChar;
+	}
+
+	@Transient
+	public boolean isEnabled() {
+		return enabledChar == '1';
 	}
 
 	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+		this.enabledChar = enabled ? '1' : '0';
 	}
 
 	@NotEmpty
