@@ -44,6 +44,14 @@ public class MS3PaycheckExtractor extends AbstractPaycheckExtractor {
 					setNetPay(paycheck, line);
 				} else if (Pattern.compile(RegexConstant.REIMBURSEMENT, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
 					setReimbursement(paycheck, line);
+				} else if (Pattern.compile(RegexConstant.FEDERAL_TAX, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
+					setFederalTax(paycheck, line);
+				} else if (Pattern.compile(RegexConstant.STATE_TAX, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
+					setStateTax(paycheck, line);
+				} else if (Pattern.compile(RegexConstant.SOCIAL_SECURITY, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
+					setSocialSecurity(paycheck, line);
+				} else if (Pattern.compile(RegexConstant.MEDICARE, Pattern.CASE_INSENSITIVE).matcher(line).find()) {
+					setMedicare(paycheck, line);
 				}
 			}
 		} catch (Exception e) {

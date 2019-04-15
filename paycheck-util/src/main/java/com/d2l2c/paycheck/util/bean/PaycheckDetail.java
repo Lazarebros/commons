@@ -9,16 +9,12 @@ import java.util.List;
  * @author dlazare
  *
  */
-public class PaycheckDetail implements Comparable<PaycheckDetail> {
+public class PaycheckDetail extends PaycheckCommon implements Comparable<PaycheckDetail> {
 
 	private int month;
-	private Long numberOfHours;
 	private BigDecimal hourlyRate;
 	private BigDecimal expectedGrossAmount;
-	private BigDecimal grossAmount;
 	private BigDecimal expectedNetPay;
-	private BigDecimal netPay;
-	private BigDecimal reimbursement;
 	private BigDecimal netPayReal;
 
 	private List<PaycheckUnit> paychecks = new ArrayList<PaycheckUnit>();
@@ -29,14 +25,6 @@ public class PaycheckDetail implements Comparable<PaycheckDetail> {
 
 	public void setMonth(int month) {
 		this.month = month;
-	}
-
-	public Long getNumberOfHours() {
-		return numberOfHours;
-	}
-
-	public void setNumberOfHours(Long numberOfHours) {
-		this.numberOfHours = numberOfHours;
 	}
 
 	public BigDecimal getHourlyRate() {
@@ -55,36 +43,12 @@ public class PaycheckDetail implements Comparable<PaycheckDetail> {
 		this.expectedGrossAmount = expectedGrossAmount;
 	}
 
-	public BigDecimal getGrossAmount() {
-		return grossAmount;
-	}
-
-	public void setGrossAmount(BigDecimal grossAmount) {
-		this.grossAmount = grossAmount;
-	}
-
 	public BigDecimal getExpectedNetPay() {
 		return expectedNetPay;
 	}
 
 	public void setExpectedNetPay(BigDecimal expectedNetPay) {
 		this.expectedNetPay = expectedNetPay;
-	}
-
-	public BigDecimal getNetPay() {
-		return netPay;
-	}
-
-	public void setNetPay(BigDecimal netPay) {
-		this.netPay = netPay;
-	}
-
-	public BigDecimal getReimbursement() {
-		return reimbursement;
-	}
-
-	public void setReimbursement(BigDecimal reimbursement) {
-		this.reimbursement = reimbursement;
 	}
 
 	public Collection<PaycheckUnit> getPaychecks() {

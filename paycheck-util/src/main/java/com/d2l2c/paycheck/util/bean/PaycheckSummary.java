@@ -14,7 +14,7 @@ public class PaycheckSummary implements Comparable<PaycheckSummary> {
 
 	private int year;
 	private int yearProgress;
-	private Long numnerOfPaychecks;
+	private Long numberOfPaychecks;
 	private BigDecimal expectedGrossAmount;
 	private BigDecimal grossAmount;
 	private BigDecimal grossAmountRemain;
@@ -43,12 +43,12 @@ public class PaycheckSummary implements Comparable<PaycheckSummary> {
 		this.yearProgress = yearProgress;
 	}
 
-	public Long getNumnerOfPaychecks() {
-		return numnerOfPaychecks;
+	public Long getNumberOfPaychecks() {
+		return numberOfPaychecks;
 	}
 
-	public void setNumnerOfPaychecks(Long numnerOfPaychecks) {
-		this.numnerOfPaychecks = numnerOfPaychecks;
+	public void setNumberOfPaychecks(Long numnerOfPaychecks) {
+		this.numberOfPaychecks = numnerOfPaychecks;
 	}
 
 	public BigDecimal getExpectedGrossAmount() {

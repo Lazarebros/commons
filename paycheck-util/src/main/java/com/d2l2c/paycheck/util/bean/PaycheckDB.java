@@ -10,7 +10,7 @@ import java.util.Date;
  * @author dlazare
  *
  */
-public class PaycheckDB {
+public class PaycheckDB extends PaycheckCommon {
 
 	private Long id;
 	private String companyCode;
@@ -20,13 +20,9 @@ public class PaycheckDB {
 	private Date payDate;
 	private Date startDate;
 	private Date endDate;
-	private Long numberOfHours;
 	private Long expectedNumberOfHours;
 	private BigDecimal netPercentageOfGross;
 	private BigDecimal hourlyRate;
-	private BigDecimal grossAmount;
-	private BigDecimal netPay;
-	private BigDecimal reimbursement;
 
 	public Long getId() {
 		return id;
@@ -92,14 +88,6 @@ public class PaycheckDB {
 		this.endDate = endDate;
 	}
 
-	public Long getNumberOfHours() {
-		return numberOfHours;
-	}
-
-	public void setNumberOfHours(Long numberOfHours) {
-		this.numberOfHours = numberOfHours;
-	}
-
 	public Long getExpectedNumberOfHours() {
 		return expectedNumberOfHours;
 	}
@@ -122,30 +110,6 @@ public class PaycheckDB {
 
 	public void setHourlyRate(BigDecimal hourlyRate) {
 		this.hourlyRate = hourlyRate;
-	}
-
-	public BigDecimal getGrossAmount() {
-		return grossAmount;
-	}
-
-	public void setGrossAmount(BigDecimal grossAmount) {
-		this.grossAmount = grossAmount;
-	}
-
-	public BigDecimal getNetPay() {
-		return netPay;
-	}
-
-	public void setNetPay(BigDecimal netPay) {
-		this.netPay = netPay;
-	}
-
-	public BigDecimal getReimbursement() {
-		return reimbursement;
-	}
-
-	public void setReimbursement(BigDecimal reimbursement) {
-		this.reimbursement = reimbursement;
 	}
 
 }

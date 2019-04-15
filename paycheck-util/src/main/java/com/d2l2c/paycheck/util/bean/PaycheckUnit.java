@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * @author dlazare
  *
  */
-public class PaycheckUnit {
+public class PaycheckUnit extends PaycheckCommon {
 
 	private Long id;
 	private String companyCode;
@@ -17,10 +17,6 @@ public class PaycheckUnit {
 	private String payDate;
 	private String startDate;
 	private String endDate;
-	private Long numberOfHours;
-	private BigDecimal grossAmount;
-	private BigDecimal netPay;
-	private BigDecimal reimbursement;
 	private BigDecimal netPayReal;
 
 	public Long getId() {
@@ -69,38 +65,6 @@ public class PaycheckUnit {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
-	}
-
-	public Long getNumberOfHours() {
-		return numberOfHours;
-	}
-
-	public void setNumberOfHours(Long numberOfHours) {
-		this.numberOfHours = numberOfHours;
-	}
-
-	public BigDecimal getGrossAmount() {
-		return grossAmount;
-	}
-
-	public void setGrossAmount(BigDecimal grossAmount) {
-		this.grossAmount = grossAmount;
-	}
-
-	public BigDecimal getNetPay() {
-		return netPay;
-	}
-
-	public void setNetPay(BigDecimal netPay) {
-		this.netPay = netPay;
-	}
-
-	public BigDecimal getReimbursement() {
-		return reimbursement;
-	}
-
-	public void setReimbursement(BigDecimal reimbursement) {
-		this.reimbursement = reimbursement;
 	}
 
 	public BigDecimal getNetPayReal() {

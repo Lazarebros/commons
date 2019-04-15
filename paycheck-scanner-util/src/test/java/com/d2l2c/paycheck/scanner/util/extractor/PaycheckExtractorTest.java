@@ -10,6 +10,8 @@ import java.io.File;
 import java.math.BigDecimal;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.d2l2c.common.util.date.DateUtil;
 import com.d2l2c.common.util.scanner.ScannerUtil;
@@ -21,6 +23,8 @@ import com.d2l2c.paycheck.scanner.util.constants.Constants;
  *
  */
 public class PaycheckExtractorTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(PaycheckExtractorTest.class);
 
 	private static final String MS3_FILE_NAME = "MS3-2017-08-15.pdf";
 
@@ -40,6 +44,10 @@ public class PaycheckExtractorTest {
 		assertThat(paycheckScan.getGrossAmount(), is(new BigDecimal("11900.00")));
 		assertThat(paycheckScan.getNetPay(), is(new BigDecimal("15665.16")));
 		assertThat(paycheckScan.getReimbursement(), is(new BigDecimal("7092.02")));
+		assertThat(paycheckScan.getFederalTax(), is(new BigDecimal("2441.31")));
+		assertThat(paycheckScan.getStateTax(), is(new BigDecimal("713.00")));
+		assertThat(paycheckScan.getSocialSecurity(), is(new BigDecimal("0.00")));
+		assertThat(paycheckScan.getMedicare(), is(new BigDecimal("172.55")));
 		
 		BigDecimal expectedGross = paycheckScan.getHourlyRate().multiply(new BigDecimal(paycheckScan.getExpectedNumberOfHours())).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
 		BigDecimal expectedNetPay = expectedGross.multiply(paycheckScan.getNetPercentageOfGross()).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
@@ -62,6 +70,10 @@ public class PaycheckExtractorTest {
 		assertThat(paycheckScan.getGrossAmount(), is(new BigDecimal("8586.00")));
 		assertThat(paycheckScan.getNetPay(), is(new BigDecimal("5664.67")));
 		assertThat(paycheckScan.getReimbursement(), is(new BigDecimal(0)));
+		assertThat(paycheckScan.getFederalTax(), is(new BigDecimal("1684.21")));
+		assertThat(paycheckScan.getStateTax(), is(new BigDecimal("580.29")));
+		assertThat(paycheckScan.getSocialSecurity(), is(new BigDecimal("532.33")));
+		assertThat(paycheckScan.getMedicare(), is(new BigDecimal("124.50")));
 
 		BigDecimal expectedGross = paycheckScan.getHourlyRate().multiply(new BigDecimal(paycheckScan.getExpectedNumberOfHours())).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
 		BigDecimal expectedNetPay = expectedGross.multiply(paycheckScan.getNetPercentageOfGross()).setScale(Constants.COMPUTE_SCALE, BigDecimal.ROUND_HALF_UP);
@@ -75,6 +87,8 @@ public class PaycheckExtractorTest {
 		File file = new File(classLoader.getResource(fileName).getFile());
 
 		String content = ScannerUtil.scanFileToText(file);
+		
+		logger.info(content);
 
 		AbstractPaycheckExtractor extractor = PaycheckExtractorFactory.getInstance(content);
 		return extractor.parse(content);

@@ -29,6 +29,10 @@ public class PaycheckScan {
 	private BigDecimal grossAmount;
 	private BigDecimal netPay;
 	private BigDecimal reimbursement = new BigDecimal(0);
+	private BigDecimal federalTax;
+	private BigDecimal stateTax = new BigDecimal(0);
+	private BigDecimal socialSecurity;
+	private BigDecimal medicare;
 
 	public PaycheckScan(String companyCode, String companyName) {
 		super();
@@ -146,6 +150,38 @@ public class PaycheckScan {
 
 	public void setReimbursement(BigDecimal reimbursement) {
 		this.reimbursement = this.reimbursement.add(reimbursement);
+	}
+
+	public BigDecimal getFederalTax() {
+		return federalTax;
+	}
+
+	public void setFederalTax(BigDecimal federalTax) {
+		this.federalTax = federalTax;
+	}
+
+	public BigDecimal getStateTax() {
+		return stateTax;
+	}
+
+	public void setStateTax(BigDecimal stateTax) {
+		this.stateTax = this.stateTax.add(stateTax);
+	}
+
+	public BigDecimal getSocialSecurity() {
+		return socialSecurity;
+	}
+
+	public void setSocialSecurity(BigDecimal socialSecurity) {
+		this.socialSecurity = socialSecurity;
+	}
+
+	public BigDecimal getMedicare() {
+		return medicare;
+	}
+
+	public void setMedicare(BigDecimal medicare) {
+		this.medicare = medicare;
 	}
 
 	public BigDecimal getExpectedGross() {

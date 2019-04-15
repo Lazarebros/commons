@@ -63,5 +63,25 @@ public abstract class AbstractPaycheckExtractor {
 		List<BigDecimal> numbers = ParserUtil.getBigDecimals(line);
 		paycheck.setReimbursement(numbers.get(0));
 	}
+	
+	protected void setFederalTax(PaycheckScan paycheck, String line) {
+		List<BigDecimal> numbers = ParserUtil.getBigDecimals(line);
+		paycheck.setFederalTax(numbers.get(0));
+	}
+	
+	protected void setStateTax(PaycheckScan paycheck, String line) {
+		List<BigDecimal> numbers = ParserUtil.getBigDecimals(line);
+		paycheck.setStateTax(numbers.get(0));
+	}
+	
+	protected void setSocialSecurity(PaycheckScan paycheck, String line) {
+		List<BigDecimal> numbers = ParserUtil.getBigDecimals(line);
+		paycheck.setSocialSecurity(numbers.get(0));
+	}
+	
+	protected void setMedicare(PaycheckScan paycheck, String line) {
+		List<BigDecimal> numbers = ParserUtil.getBigDecimals(line);
+		paycheck.setMedicare(numbers.get(0));
+	}
 
 }
